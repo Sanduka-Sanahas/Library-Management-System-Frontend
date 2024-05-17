@@ -1,0 +1,31 @@
+
+<app-navbar></app-navbar>
+
+<div class="container mt-5 ">
+    <table class="table table-hover table-bordered ">
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Brrower ID</th>
+                <th scope="col">Books</th>
+                <th scope="col">Date</th>
+                <th scope="col">Fine</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let transactions of allTransactions">
+                <td>#TRS{{transactions.id}}</td>
+                <td>{{transactions.borrowId}}</td>
+                <td>{{transactions.bookId}}</td>
+                <td>{{transactions.date}}</td>
+                <td>{{transactions.fine}}</td>
+            
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>

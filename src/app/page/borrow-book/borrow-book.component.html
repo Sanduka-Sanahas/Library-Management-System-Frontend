@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+
+
+<div class="container mt-5 ">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="input-group  mb-3 ">
+                <input type="text" class="form-control " placeholder="Recipient's User Name"
+                    aria-label="Recipient's User Name" aria-describedby="button-addon2" [(ngModel)]="userName"
+                    [ngModelOptions]="{standalone:true}">
+                <button class="btn  btn-outline-success " type="button" id="button-addon2"
+                    (click)="searchUser();">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered " *ngIf="user">
+        <thead>
+            <tr>
+
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Country</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            <tr *ngIf="user">
+                <td>{{user.userName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phoneNumber}}</td>
+                <td>{{user.country}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <div *ngIf="user">
+        <div class="input-group  mb-3 ">
+            <input type="text" class="form-control " placeholder="Book Id" aria-label="Book Id"
+                aria-describedby="button-addon2" [(ngModel)]="bookId" [ngModelOptions]="{standalone:true}">
+            <button class="btn  btn-outline-success " type="button" id="button-addon2"
+                (click)="searchBook();">Search</button>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered " *ngIf="searchBookRes">
+        <thead>
+            <tr>
+
+                <th>ID</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let book of cartList">
+                <td>{{book.id}}</td>
+                <td>{{book.isbn}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.category}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+        <input type="button" value="Borrow Book" class="btn btn-dark " *ngIf="searchBookRes" (click)="borrowBook();">
+
+</div>

@@ -1,0 +1,164 @@
+<app-navbar></app-navbar>
+
+<div class="table-responsive small container ">
+    <table class="table table-hover table-bordered ">
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Address2</th>
+                <th scope="col">Country</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let user of userList">
+                <td>#USER{{user.id}}</td>
+                <td>{{user.firstName+" "+user.lastName+" ( "+user.userName+" )"}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.address2}}</td>
+                <td>{{user.country}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phoneNumber}}</td>
+                <td><button class="btn btn-outline-secondary "  (click)="setSelectedUser(user)"><i class="bi bi-pencil-square" data-bs-toggle="modal"
+                            data-bs-target="#updateModal" data-bs-whatever="@getbootstrap"></i></button></td>
+
+                <td><button data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-outline-danger"><i
+                            class="bi bi-trash3-fill"  (click)="setSelectedUser(user)"></i></button></td>
+
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Conformation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                if You want To Delete
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="deleteUser()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Model Update Conformation -->
+
+<div class="modal fade" id="updateConformationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Conformation Update</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                If You Want To Update " {{selectedUser?.userName}} " This Book ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveUser()">Confirm
+                    Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Update -->
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update User Data</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ID:</label>
+                        <input type="text"  [(ngModel)]="selectedUser.id" [ngModelOptions]="{standalone : true}" class="form-control" disabled
+                            id="recipient-name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">First Name:</label>
+                        <input type="text"  [(ngModel)]="selectedUser.firstName" [ngModelOptions]="{standalone : true}" class="form-control" 
+                            id="recipient-name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Last Name:</label>
+                        <input type="text" [(ngModel)]="selectedUser.lastName" [ngModelOptions]="{standalone : true}"
+                            class="form-control" id="recipient-name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">User Name:</label>
+                        <input type="text" [(ngModel)]=" selectedUser.userName" [ngModelOptions]="{standalone : true}"
+                            class="form-control" id="recipient-name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Email:</label>
+                        <input type="text" [(ngModel)]=" selectedUser.email" [ngModelOptions]="{standalone : true}"
+                            class="form-control" id="recipient-name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Address:</label>
+                        <input type="text" [(ngModel)]=" selectedUser.address" [ngModelOptions]="{standalone : true}"
+                            class="form-control" id="recipient-name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Address Line 2:</label>
+                        <input type="text" [(ngModel)]=" selectedUser.address2" [ngModelOptions]="{standalone : true}"
+                            class="form-control" id="recipient-name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Country:</label>
+                        <input type="text" [(ngModel)]=" selectedUser.country" [ngModelOptions]="{standalone : true}"
+                            class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Phone Number:</label>
+                        <input type="number" [(ngModel)]=" selectedUser.phoneNumber" [ngModelOptions]="{standalone : true}"
+                            class="form-control" id="recipient-name">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success " data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#updateConformationModal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
